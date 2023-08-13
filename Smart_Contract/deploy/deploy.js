@@ -8,7 +8,7 @@ const fs = require("fs");
 const { ethers, network } = require("hardhat");
 const hre = require("hardhat");
 // require("fs");
-const { networkConfig, proposal_file, ADDRESS_ZERO } = require("../helper-hardhat.config");
+const { networkConfig, proposal_file, ADDRESS_ZERO, address_file } = require("../helper-hardhat.config");
 const { move_blocks } = require("../utils/move_blocks");
 const { existsSync } = require("node:fs");
 const { move_time } = require("../utils/move_time");
@@ -31,21 +31,18 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   if (DEVELOPMENT_NETWORKS.includes(network.name)) {
     args1 = ["AidFlow", "AF"]
     af_token = await deploy("GovernanceToken", { from: deployer, log: true, args: args1 })
-    // await fucha.deployed()
     log("AidFlow token deployed to by", deployer)
     log("-------------------------------")
 
     log("Deploying timeLock")
     args2 = [networkConfig[chainId]["min_delay"], [], [], deployer]
     timelock = await deploy("TimelockContract", { from: deployer, log: true, args: args2 })
-    // await fucha.deployed()
     log("Timelock deployed to by", deployer)
     log("-------------------------------")
 
     log("Deploying Governance contract")
     args3 = [af_token.address, timelock.address, networkConfig[chainId]["voting_delay"], networkConfig[chainId]["voting_period"]]
     governor = await deploy("AidGovernance", { from: deployer, log: true, args: args3 })
-    // await fucha.deployed()
     log("Governance deployed to by", deployer)
     log("-------------------------------")
 
@@ -65,7 +62,6 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log("Deploying aidflow contract")
     args4 = [minValue, prizeIndex, af_token.address, supportAmount]
     aidF = await deploy("AidFlow", { from: deployer, log: true, args: args4 })
-    // await fucha.deployed()
     log("aidFlow contract deployed to by", deployer)
     log("-------------------------------")
 
@@ -182,8 +178,18 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log("Wallet Ethereum Address:", WALLET.address)
     const af_token = await af_.deploy("AidFlow", "AF")
     await af_token.deployed()
-    log("Contract deployed... to", af_token.address)
-    log("AidFlow deployed to by", WALLET.address)
+    log("AidFlow token Contract deployed... to", af_token.address)
+    const af_address = await af_token.address
+    if (fs.existsSync(address_file)) {
+      addresses = JSON.parse(fs.readFileSync(address_file, "utf8"))
+    }
+    else {
+      addresses = {}
+      addresses["AidToken"] = []
+    }
+    addresses["AidToken"].push(af_address.toString())
+    fs.writeFileSync(address_file, JSON.stringify(addresses), "utf8")
+    log("aid token address stored")
     log("-------------------------------")
 
     log("Deploying timeLock")
@@ -191,8 +197,18 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log("Wallet Ethereum Address:", WALLET.address)
     const timelock = await timelock_.deploy(minValue, [], [], WALLET.address)
     await timelock.deployed()
-    log("Contract deployed... to", timelock.address)
-    log("Timelock deployed to by", WALLET.address)
+    log("Timelock Contract deployed... to", timelock.address)
+    const timelock_address = await timelock.address
+    if (fs.existsSync(address_file)) {
+      addresses = JSON.parse(fs.readFileSync(address_file, "utf8"))
+    }
+    else {
+      addresses = {}
+      addresses["TimelockContract"] = []
+    }
+    addresses["TimelockContract"].push(timelock_address.toString())
+    fs.writeFileSync(address_file, JSON.stringify(addresses), "utf8")
+    log("timelock address stored")
     log("-------------------------------")
 
     log("Deploying Governance contract")
@@ -200,8 +216,18 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log("Wallet Ethereum Address:", WALLET.address)
     const aidG = await aidG_.deploy(af_token.address, timelock.address, voting_delay, voting_period)
     await aidG.deployed()
-    log("Contract deployed... to", aidG.address)
-    log("Governance deployed to by", WALLET.address)
+    log("Governance Contract deployed... to", aidG.address)
+    const aidG_address = await aidG.address
+    if (fs.existsSync(address_file)) {
+      addresses = JSON.parse(fs.readFileSync(address_file, "utf8"))
+    }
+    else {
+      addresses = {}
+      addresses["AidGovernance"] = []
+    }
+    addresses["AidGovernance"].push(aidG_address.toString())
+    fs.writeFileSync(address_file, JSON.stringify(addresses), "utf8")
+    log("AidGovernance address stored")
     log("-------------------------------")
 
     log("Deploying AidFlow")
@@ -209,8 +235,18 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log("Wallet Ethereum Address:", WALLET.address)
     const aidF = await aidf.deploy(minValue, prizeIndex, af_token.address, supportAmount)
     await aidF.deployed()
-    log("Contract deployed... to", aidF.address)
-    log("Timelock deployed to by", WALLET.address)
+    log("AidFLOW Contract deployed... to", aidF.address)
+    const aidF_address = await af_token.address
+    if (fs.existsSync(address_file)) {
+      addresses = JSON.parse(fs.readFileSync(address_file, "utf8"))
+    }
+    else {
+      addresses = {}
+      addresses["AidToken"] = []
+    }
+    addresses["AidFlow"].push(aidF_address.toString())
+    fs.writeFileSync(address_file, JSON.stringify(addresses), "utf8")
+    log("Aidflow address stored")
     log("-------------------------------")
 
     const timelockContract = await ethers.getContractFactory("TimelockContract", WALLET)
@@ -280,9 +316,11 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     }
     else {
       proposals = {}
-      proposals[chainId] = []
+      proposals[chainId]["ProposalId"] = []
+      proposals[chainId]["Description"] = [description]
     }
-    proposals[chainId].push(proposal_id.toString())
+    proposals[chainId]["ProposalId"].push(proposal_id.toString())
+    proposals[chainId]["Description"].push(description.toString())
     fs.writeFileSync(proposal_file, JSON.stringify(proposals), "utf8")
     log("proposal stored")
 

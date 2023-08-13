@@ -11,8 +11,8 @@ const networkConfig = {
         description: "Help for earthquake"
 
     },
-    3141: {
-        name: "hyperspace",
+    314159: {
+        name: "Calibration",
         minValue: 1000000,
         prizendex: 1,
         aidToken: "",
@@ -28,10 +28,12 @@ const networkConfig = {
 const DEVELOPMENT_NETWORKS = ["hardhat", "local-host"]
 const proposal_file = "proposal.json"
 const ADDRESS_ZERO = "0x0000000000000000000000000000000000000000"
+const address_file = "addresses.json"
 
 module.exports = {
     networkConfig,
     DEVELOPMENT_NETWORKS,
     proposal_file,
-    ADDRESS_ZERO
+    ADDRESS_ZERO,
+    address_file
 }
