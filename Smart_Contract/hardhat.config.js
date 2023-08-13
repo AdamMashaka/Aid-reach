@@ -5,6 +5,7 @@ require("hardhat-deploy");
 require("dotenv").config();
 require("./tasks");
 require("hardhat-deploy-ethers")
+require("fs")
 // require("hardhat");
 // require('@nomiclabs/hardhat-waffle');
 // const PRIVATE_KEY = `${process.env.PRIVATE_KEY}`
@@ -13,7 +14,7 @@ const PRIVATE_KEY2 = process.env.PRIVATE_KEY2
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  defaultNetwork: 'hardhat',
+  defaultNetwork: 'Calibration',
   networks: {
     hardhat: {
       // accounts: []

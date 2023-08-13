@@ -45,4 +45,8 @@ contract AidFlow is Ownable {
     function withdraw_stake(address addr) public onlyOwner {
         (payable(addr)).transfer(supportAmount);
     }
+
+    function getBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
 }

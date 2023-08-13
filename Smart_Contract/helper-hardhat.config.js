@@ -26,9 +26,12 @@ const networkConfig = {
 }
 
 const DEVELOPMENT_NETWORKS = ["hardhat", "local-host"]
-
+const proposal_file = "proposal.json"
+const ADDRESS_ZERO = "0x0000000000000000000000000000000000000000"
 
 module.exports = {
     networkConfig,
     DEVELOPMENT_NETWORKS,
+    proposal_file,
+    ADDRESS_ZERO
 }
