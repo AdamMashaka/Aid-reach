@@ -135,9 +135,11 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     }
     else {
       proposals = {}
-      proposals[chainId] = []
+      proposals[chainId]["ProposalId"] = []
+      proposals[chainId]["Description"] = [description]
     }
-    proposals[chainId].push(proposal_id.toString())
+    proposals[chainId]["ProposalId"].push(proposal_id.toString())
+    proposals[chainId]["Description"].push(description.toString())
     fs.writeFileSync(proposal_file, JSON.stringify(proposals), "utf8")
     log("proposal stored")
 
@@ -236,13 +238,13 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     const aidF = await aidf.deploy(minValue, prizeIndex, af_token.address, supportAmount)
     await aidF.deployed()
     log("AidFLOW Contract deployed... to", aidF.address)
-    const aidF_address = await af_token.address
+    const aidF_address = await aidF.address
     if (fs.existsSync(address_file)) {
       addresses = JSON.parse(fs.readFileSync(address_file, "utf8"))
     }
     else {
       addresses = {}
-      addresses["AidToken"] = []
+      addresses["AidFlow"] = []
     }
     addresses["AidFlow"].push(aidF_address.toString())
     fs.writeFileSync(address_file, JSON.stringify(addresses), "utf8")
