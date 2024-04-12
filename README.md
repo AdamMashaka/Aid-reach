@@ -6,7 +6,8 @@ AidFlow is a decentralized humanitarian aid platform built on the Filecoin Virtu
 
 **Team Members:**
 - Adam .M. Katani (Github: @AdamMAshaka,
-Email: mashakaadam123@gmail.com
+Email: mashakaadam123@gmail.com))
+
 -Crasiana Alfred
 Email: crasiana23@gmail.com
 ## Technologies Used
