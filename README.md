@@ -1,17 +1,14 @@
-# Project Name: AidFlow
+)# Project Name: AidFlow
 
 ## Project Description
 
 AidFlow is a decentralized humanitarian aid platform built on the Filecoin Virtual Machine (FVM) that revolutionizes the distribution of aid during emergencies and crises. It ensures transparency, efficiency, and accountability in aid delivery, making a positive impact on vulnerable communities.
 
 **Team Members:**
-
-- Karim M. Nyumba (GitHub: @karimnyumba, Email: nyumba29@gmail.com)
-- Joseph M. Buyegi (GitHub: @Rasta669, Email: buyegiminzi@gmail.com)
-- Daniel Mawalla (GitHub: @fierylion, Email: mawalladaniel2021@gmail.com)
 - Adam .M. Katani (Github: @AdamMAshaka,
-Email: mashakaadam123@gmail.com)
-
+Email: mashakaadam123@gmail.com
+-Crasiana Alfred
+Email: crasiana23@gmail.com
 ## Technologies Used
 
 - Filecoin Virtual Machine (FVM): Leveraging FVM for smart contracts, fund allocation, and transparent aid distribution.
