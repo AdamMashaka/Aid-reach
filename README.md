@@ -46,7 +46,7 @@ The project's well-organized structure ensures the efficient integration of both
 
 1. Donors contribute Filecoin tokens to the smart contract fund pool.
 2. Verified NGOs submit aid proposals, outlining their initiatives and resource allocation.
-3. Smart contract automatically releases funds upon verification of predefined conditions.
+3. Smart contract automatically releases funds upon verification of predefined conditions.))
 4. NGOs initiate aid projects and track progress in real-time.
 5. Transparency and accountability ensured through blockchain records.
 
@@ -60,11 +60,5 @@ The project's well-organized structure ensures the efficient integration of both
 **Demo:** [Live Demo](https://aidreach.netlify.app)
 
 ## Judging Criteria
-
-- **Novelty/Creativity:** Innovative approach to humanitarian aid distribution.
-- **Potential Impact:** Addressing critical gaps in aid delivery with the potential for widespread impact.
-- **Technical Accomplishment:** Clean, complete codebase with efficient implementation.
-- **FVM Implementation:** Effective integration of FVM for smart contracts and fund allocation.
-- **Design:** User-friendly, intuitive UX/UI design enhancing user experience.
 
 [Join Us in Making a Difference](https://aidreach.netlify.app)
