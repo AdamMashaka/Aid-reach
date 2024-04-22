@@ -9,8 +9,6 @@ AidFlow is a decentralized humanitarian aid platform built on the Filecoin Virtu
 - Github: @AdamMAshaka,
 Email: mashakaadam123@gmail.com
 
--Crasiana Alfred
-Email: crasiana23@gmail.com
 ## Technologies Used
 
 - Filecoin Virtual Machine (FVM): Leveraging FVM for smart contracts, fund allocation, and transparent aid distribution.
@@ -56,7 +54,7 @@ The project's well-organized structure ensures the efficient integration of both
 
 ## Submission Details
 
-**Repository:** [GitHub Repository](https://github.com/Rasta669/AidFlow.git)
+**Repository:** [GitHub Repository](https://github.com/AdamMashaka/Aid-reach)
 **Demo:** [Live Demo](https://aidreach.netlify.app)
 
 ## Judging Criteria
